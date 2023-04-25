@@ -64,6 +64,7 @@ namespace ST10085591_Part_1
 
         public void Scale_Recipe(double factor)
         {
+            // The display of the scale
             for (int i = 0; i < Ingredient_Quantities.Length; i++)
             {
                 Console.WriteLine(" ~ {0}", Ingredient_Quantities[i]);
