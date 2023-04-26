@@ -56,3 +56,12 @@
         }
     }
 }
+
+/***************************************************************************************
+*    Title: <Pro C# 9 with .NET 5 : foundational principles and practices in programming>
+*    Author: <(Troelsen and Japikse, 2021)>
+*    Date: <2021>
+*    Code version: <c#>
+*    Availability: <Textbook>
+*
+***************************************************************************************/

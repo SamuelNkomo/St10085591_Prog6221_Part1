@@ -15,6 +15,7 @@ namespace ST10085591_Part_1
 
         public void EnterRecipe()
         {
+
             // This section represents the part where you are going to enter the ingredients and steps
             Console.Write("Fill in number of ingredients: ");
             int numIngredients = int.Parse(Console.ReadLine());
@@ -96,3 +97,12 @@ namespace ST10085591_Part_1
         }
     }
 }
+
+/***************************************************************************************
+*    Title: <Pro C# 9 with .NET 5 : foundational principles and practices in programming>
+*    Author: <(Troelsen and Japikse, 2021)>
+*    Date: <2021>
+*    Code version: <c#>
+*    Availability: <Textbook>
+*
+***************************************************************************************/
