@@ -15,6 +15,7 @@ namespace ST10085591_Part_1
 
         public void EnterRecipe()
         {
+            // This section represents the part where you are going to enter the ingredients and steps
             Console.Write("Fill in number of ingredients: ");
             int numIngredients = int.Parse(Console.ReadLine());
 
