@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ST10085591_Part_1
+namespace ST10085591_Part_
 {
     class Recipe
     {
