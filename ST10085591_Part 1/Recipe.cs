@@ -8,95 +8,81 @@ namespace ST10085591_Part_1
 {
     class Recipe
     {
-        private string[] Ingredient_Name;
-        private string[] Ingredient_Units;
-        private string[] Steps;
-        private double[] Ingredient_Quantities;
+        public string Name { get; private set; }
+        public List<Ingredient> Ingredients { get; private set; }
+        public List<string> Steps { get; private set; }
+        public int TotalCalories { get; private set; }
 
-        public void EnterRecipe()
+        public Recipe(string name)
         {
-
-            // This section represents the part where you are going to enter the ingredients and steps
-            Console.Write("Fill in number of ingredients: ");
-            int numIngredients = int.Parse(Console.ReadLine());
-
-            Ingredient_Name = new string[numIngredients];
-            Ingredient_Quantities = new double[numIngredients];
-            Ingredient_Units = new string[numIngredients];
-
-            for (int i = 0; i < numIngredients; i++)
-            {
-                Console.Write("Fill in Name of ingredient {0}: ", i + 1);
-                Ingredient_Name[i] = Console.ReadLine();
-
-                Console.Write("Fill in Quantity of ingredient : ", i + 1);
-                Ingredient_Quantities[i] = double.Parse(Console.ReadLine());
-
-                Console.Write("Fill in Unit of measurement of ingredient {0}: ", i + 1);
-                Ingredient_Units[i] = Console.ReadLine();
-            }
-            // This is to allow the recipep to have multiple steps
-            Console.Write("Fill in number of steps: ");
-            int numStep = int.Parse(Console.ReadLine());
-
-            Steps = new string[numStep];
-
-            for (int i = 0; i < numStep; i++)
-            {
-                Console.Write("Fill in step {0}: ", i + 1);
-                Steps[i] = Console.ReadLine();
-            }
+            Name = name;
+            Ingredients = new List<Ingredient>();
+            Steps = new List<string>();
+            TotalCalories = 0;
         }
 
-        public void Display_Recipe()
+        public void AddIngredient(Ingredient ingredient)
         {
-            //This section should be able to Display the recipe the client hae requested for
+            Ingredients.Add(ingredient);
+            TotalCalories += ingredient.Calories; // Update the total calories
+        }
+
+        public void AddStep(string step)
+        {
+            Steps.Add(step);
+        }
+
+        public void DisplayRecipe()
+        {
+            Console.WriteLine("Recipe: {0}", Name);
             Console.WriteLine("Ingredients:");
-            for (int i = 0; i < Ingredient_Name.Length; i++)
+
+            foreach (Ingredient ingredient in Ingredients)
             {
-                Console.WriteLine(" ~ {0} {1} {2}", Ingredient_Quantities[i], Ingredient_Units[i], Ingredient_Name[i]);
+                Console.WriteLine(" - {0} {1} {2}, Calories: {3}, Food Group: {4}",
+                    ingredient.Quantity, ingredient.Unit, ingredient.Name, ingredient.Calories, ingredient.FoodGroup);
             }
-            //Also include the numbers of steps provided
+
             Console.WriteLine("Steps:");
-            for (int i = 0; i < Steps.Length; i++)
+
+            for (int i = 0; i < Steps.Count; i++)
             {
                 Console.WriteLine("{0}. {1}", i + 1, Steps[i]);
             }
-        }
 
-        public void Scale_Recipe(double factor)
-        {
-            // The display of the scale
-            for (int i = 0; i < Ingredient_Quantities.Length; i++)
+            Console.WriteLine("Total Calories: {0}", TotalCalories);
+            Console.WriteLine();
+
+            
+
+            if (TotalCalories > 300)
             {
-                Console.WriteLine(" ~ {0}", Ingredient_Quantities[i]);
-                Ingredient_Quantities[i] *= factor;
+                Console.WriteLine("Warning: This recipe exceeds 300 calories.");
             }
         }
 
-        public void Reset_Quantities()
+        public void ScaleRecipe(double factor)
         {
-            // This secetion is going to reset the Quantity dividing it by 2
-            for (int i = 0; i < Ingredient_Quantities.Length; i++)
+            foreach (Ingredient ingredient in Ingredients)
             {
-                //Assuming that the original quantities are always doubled when scale
-                Ingredient_Quantities[i] /= 2;
-                Console.WriteLine("Quantity is reset");
+                ingredient.ScaleQuantity(factor); // Scale the ingredient quantity
             }
+
+            Console.WriteLine("Recipe '{0}' successfully scaled by a factor of {1}.", Name, factor);
         }
 
-        public void Clear_Recipe()
+        public void ResetQuantities()
         {
-            // This secetion is going to clear the recipe that the clients caputured 
-            Ingredient_Name = null;
-            Ingredient_Quantities = null;
-            Ingredient_Units = null;
-            Steps = null;
+            foreach (Ingredient ingredient in Ingredients)
+            {
+                ingredient.ResetQuantity(); // Reset the ingredient quantity
+            }
 
-            Console.WriteLine("Recipe is sucessfully cleared");
+            Console.WriteLine("Recipe '{0}' quantities successfully reset.", Name);
         }
     }
 }
+
 
 /***************************************************************************************
 *    Title: <Pro C# 9 with .NET 5 : foundational principles and practices in programming>
