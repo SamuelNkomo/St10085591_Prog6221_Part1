@@ -170,10 +170,13 @@ namespace ST10085591_Prog6221_Poe
 
     public class Recipe : INotifyPropertyChanged
     {
-        private string name;
-        private List<Ingredient> ingredients;
-        
-        private int totalCalories;
+        private string name; // The name of the recipe
+
+        private List<Ingredient> ingredients; // The list of ingredients in the recipe
+
+        private List<string> steps; // The list of steps in the recipe
+
+        private int totalCalories; // The total number of calories in the recipe
 
         public string Name
         {
@@ -231,9 +234,9 @@ namespace ST10085591_Prog6221_Poe
 
     public class Ingredient
     {
-        public string Name { get; set; }
-        public int Calories { get; set; }
-        public string FoodGroup { get; set; }
+        public string Name { get; set; } // The name of the ingredient
+        public int Calories { get; set; } // The number of calories in the ingredient
+        public string FoodGroup { get; set; } // The food group that the ingredient belongs to
 
         public Ingredient(string name, int calories, string foodGroup)
         {
